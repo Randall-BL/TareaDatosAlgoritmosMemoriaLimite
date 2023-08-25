@@ -10,7 +10,12 @@ const int PAGE_SIZE = 256;
 
 
 class PagedArray {
-    std::vector<int> pages[6];
+    /*Paged Array es la clase encargada de la manipulación de las páginas a utilizar o utilizadas
+     * 
+     * 
+     * 
+    */
+    std::vector<int> pages[6];//establece la cantidad de páginas que se utilizaran
     int loadedPages[6];
     bool dirtyPages[6] = {false};  // Almacena si una página ha sido modificada
     std::fstream file;
@@ -84,6 +89,14 @@ public:
     }
 
     void markPageDirty(int index) {
+        /**
+         * markPadeDirty es la función encargada de marcar las páginas que y fueron utilizadas
+         * o editadas.
+         * 
+         * @param int index
+         * @return un valor booleano que marca cada página como verdadera si ya se utilizo y 
+         * falsa si todavía no se ha utilizado.
+        */
         int page = index / PAGE_SIZE;
         for (int i = 0; i < 6; i++) {
             if (loadedPages[i] == page) {
@@ -103,6 +116,13 @@ public:
 };
 
 void convertToBinary(const std::string& inputFile, const std::string& binaryFile) {
+    /**
+     * ConvertToBinary es la función encargada de convertir los números de decimal a binario
+     * 
+     * @param String& inputFile, String& binaryFile
+     * @return la cadena de números en binario
+     * 
+    */
     std::ifstream in(inputFile);
     std::ofstream out(binaryFile, std::ios::binary | std::ios::trunc);
     int number;
@@ -119,6 +139,14 @@ void convertToBinary(const std::string& inputFile, const std::string& binaryFile
 }
 
 void convertToText(const std::string& binaryFile, const std::string& textFile) {
+    /**
+     * ConvertToText es la función encargada de convertir el documento de números en binario
+     * a texto 
+     * 
+     * @param String& binaryFile, String& textFile
+     * @return El archivo de números en binario convertidos a texto
+     * 
+    */
     std::ifstream in(binaryFile, std::ios::binary);
     std::ofstream out(textFile, std::ios::trunc);
     int number;
@@ -138,6 +166,13 @@ void convertToText(const std::string& binaryFile, const std::string& textFile) {
 }
 
 int getTotalNumbersInFile(const std::string& filename) {
+    /**
+     * getTotalNumbersInFile se encarga de contar todos los números separados por comas que 
+     * hay en el archivo.
+     * 
+     * @param String& filename
+     * @return un entero llamado count con la cantidad de todos los números del archivo
+    */
     std::ifstream file(filename, std::ios::binary | std::ios::ate);
 
     if (!file.is_open()) {
@@ -152,6 +187,13 @@ int getTotalNumbersInFile(const std::string& filename) {
 
 
 int partition(PagedArray &arr, int low, int high) {
+    /**
+     * partion es la función encargada del movimiento de los elementos al momento de
+     * realizar el QuickSort
+     * 
+     * @param PagedArray &arr, int low, int high
+     * @return El valor de i y a su vez markPageDirty
+    */
     int pivot = arr[high];
     int i = (low - 1);
     
@@ -170,6 +212,13 @@ int partition(PagedArray &arr, int low, int high) {
 }
 
 void quickSort(PagedArray &arr, int low, int high) {
+    /**
+     * quickSort uno de los algoritmos de ordenamiento que hay que implementar en la solución 
+     * del ejercicio
+     * 
+     * @param PagedArray &arr, int low, int high
+     * @return El archivo con los números ya en el orden correspondiente
+    */
     if (low < high) {
         int pi = partition(arr, low, high);
         quickSort(arr, low, pi - 1);
@@ -182,6 +231,14 @@ void quickSort(PagedArray &arr, int low, int high) {
 
 
 void insertionSort(PagedArray& arr, int n) {
+    /**
+     * InsertionSort es uno de los algoritmos de ordenamientos que hay que implementar en la
+     * solución del ejercicio
+     * 
+     * @param PagedArray& arr, int n
+     * @return los números en orden y a su vez marca la pagina como sucia con el 
+     * markPageDirty
+    */
     for (int i = 1; i < n; i++) {
         int key = arr[i];
         int j = i - 1;
@@ -202,6 +259,14 @@ void insertionSort(PagedArray& arr, int n) {
 
 
 void selectionSort(PagedArray& arr, int n) {
+    /**
+     * seleciontSort es uno de los algoritmos de ordenamiento que hay que implementar en la 
+     * solución del ejercicio
+     * 
+     * @param pagedArray& arr, int n
+     * @return los números en el orden correspondiente y marca las páginas como sucias con 
+     * el markPageDirty
+    */
     for (int i = 0; i < n-1; i++) {
         int min_idx = i;
         for (int j = i+1; j < n; j++) {
@@ -219,6 +284,13 @@ void selectionSort(PagedArray& arr, int n) {
 
 
 void bubbleSort(PagedArray& arr, int n) {
+    /**
+     * bubbleSort es el algoritmo de ordenamient propuesto para solución del ejercicio
+     * 
+     * @param PagedArray& arr, int n
+     * @return los números en el orden correspondiente y marca las paginas como sucias con 
+     * el markPageDirty 
+    */
     for (int i = 0; i < n-1; i++) {
         for (int j = 0; j < n-i-1; j++) {
             if (arr[j] > arr[j+1]) {
