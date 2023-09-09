@@ -5,6 +5,8 @@
 #include <iterator>
 #include <sstream>
 #include <cstring> // para std::remove
+#include "pagesort.h"
+
 
 const int PAGE_SIZE = 256;
 
@@ -15,6 +17,8 @@ class PagedArray {
      * 
      * 
     */
+
+
     std::vector<int> pages[6];//establece la cantidad de páginas que se utilizaran
     int loadedPages[6];
     bool dirtyPages[6] = {false};  // Almacena si una página ha sido modificada
@@ -304,6 +308,8 @@ void bubbleSort(PagedArray& arr, int n) {
     }
 }
 
+
+
 int main(int argc, char* argv[]) {
     if (argc != 7) {
         std::cerr << "Uso incorrecto. La sintaxis correcta es:\n";
@@ -370,5 +376,8 @@ int main(int argc, char* argv[]) {
               << " y guardado en " << outputFile << ".\n";
 
     return 0;
+
+    
+
 }
 

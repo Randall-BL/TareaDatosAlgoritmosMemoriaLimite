@@ -1,0 +1,20 @@
+Start testing: Sep 08 23:46 CST
+----------------------------------------------------------
+1/1 Testing: UnitTests
+1/1 Test: UnitTests
+Command: "/home/ismael/Desktop/TareaDatosAlgoritmosMemoriaLimite/build/runUnitTest"
+Directory: /home/ismael/Desktop/TareaDatosAlgoritmosMemoriaLimite/build
+"UnitTests" start time: Sep 08 23:46 CST
+Output:
+----------------------------------------------------------
+Uso incorrecto. La sintaxis correcta es:
+paged-sort -i <archivo> -a {QS|IS|SS|PS} -o <archivo_resultado>
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"UnitTests" end time: Sep 08 23:46 CST
+"UnitTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 08 23:46 CST

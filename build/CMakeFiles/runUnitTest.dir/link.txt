@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/runUnitTest.dir/src/pagesort.cpp.o CMakeFiles/runUnitTest.dir/src/test.cpp.o -o runUnitTest  lib/libgtest.a lib/libgtest_main.a lib/libgtest.a 
